@@ -19,10 +19,10 @@ public class SecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity serverHttpSecurity) throws Exception {
         serverHttpSecurity.csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(authorizeExchangeSpec ->
-                        authorizeExchangeSpec.pathMatchers("/**").permitAll()
+                        authorizeExchangeSpec.pathMatchers("user-service/api/v1/**").permitAll()
                                 .anyExchange()
                                 .authenticated())
-                                .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);
+                .oauth2ResourceServer(ServerHttpSecurity.OAuth2ResourceServerSpec::jwt);
         return serverHttpSecurity.build();
     }
 
